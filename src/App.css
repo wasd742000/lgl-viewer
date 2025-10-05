@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(135deg, #FFDAB9, #FFE4B5); /* Updated to peach gradient */
   animation: gradientAnimation 6s infinite alternate;
   color: #fff;
   text-align: center;
@@ -77,7 +77,7 @@
 
 /* Base styles for the app */
 body {
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Soft gradient */
+  background: #fdf5e6; /* Soft gradient */
   color: #333; /* Neutral dark */
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -100,12 +100,13 @@ body {
 }
 
 .navbar {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: #d2b48c; /* Tan color to complement the retro background */
+  color: #333; /* Neutral dark for text */
   padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
   display: flex;
   justify-content: space-around;
   align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar.sticky {
@@ -137,7 +138,7 @@ body {
 }
 
 .navbar a {
-  color: #fff;
+  color: #333; /* Neutral dark for links */
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -150,12 +151,7 @@ body {
 }
 
 .navbar a:hover {
-  color: #ffdd57;
-  transform: scale(1.1);
-}
-
-.navbar a:hover {
-  color: var(--secondary-color);
+  color: #a0522d; /* Lighter Saddle Brown for hover */
 }
 
 .hidden-love-note {
@@ -181,23 +177,36 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #2c3e50; /* Modern dark blue */
-  font-family: 'Roboto', sans-serif;
+  color: #5a4632; /* Dark Brown for vintage headers */
 }
 
 a {
-  color: #3498db; /* Vibrant blue */
+  color: #8b4513; /* Saddle Brown for links */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #1abc9c; /* Soft green */
+  color: #a0522d; /* Lighter Saddle Brown for hover */
+}
+
+button {
+  background-color: #d2b48c; /* Tan for button background */
+  color: #5a4632; /* Dark Brown for button text */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #c2a385; /* Slightly darker tan for hover */
 }
 
 .footer {
-  background: linear-gradient(90deg, #2c3e50, #34495e);
-  color: white;
+  background: linear-gradient(90deg, #8b4513, #5a4632); /* Retro gradient */
+  color: #fdf5e6; /* Match background for text */
   padding: 20px;
   text-align: center;
   display: flex;
@@ -227,9 +236,10 @@ a:hover {
 }
 
 .modal {
-  background-color: white;
+  background-color: #f5e8d0; /* Soft beige for modal background */
+  color: #5a4632; /* Dark Brown for modal text */
   border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(90, 70, 50, 0.2);
   padding: 20px;
   position: relative;
 }
@@ -280,6 +290,9 @@ a:hover {
   justify-content: center;
   overflow: hidden;
   position: relative;
+  background: #f5e8d0; /* Soft beige for carousel */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(90, 70, 50, 0.2);
 }
 
 .carousel-container.smooth {
@@ -302,12 +315,17 @@ a:hover {
 }
 
 .carousel-button {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: #d2b48c; /* Tan for button background */
+  color: #5a4632; /* Dark Brown for button text */
   border: none;
-  padding: var(--spacing-unit);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(90, 70, 50, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .carousel-button.smooth {
@@ -319,7 +337,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(90, 70, 50, 0.2);
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -329,7 +347,7 @@ a:hover {
 }
 
 .carousel-button:hover {
-  background-color: var(--secondary-color);
+  background-color: #c2a385; /* Slightly darker tan for hover */
 }
 
 .birthday-message.animated {
@@ -528,6 +546,8 @@ a:hover {
 
 .floating-item {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #d2b48c; /* Tan border */
+  box-shadow: 0 4px 6px rgba(90, 70, 50, 0.2);
 }
 
 .floating-item:hover {

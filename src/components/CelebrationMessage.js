@@ -6,8 +6,9 @@ function CelebrationMessage() {
   return (
     <div className="celebration-message-container">
       <div className="celebration-header">
-        <h1 className="celebration-title">Happy Birthday, My Beautiful Love - Le Gia Linh</h1>
-        <p className="celebration-subtitle">Celebrating the most wonderful person in my life</p>
+        <h1 className="celebration-title">HAPPY BIRTHDAY</h1>
+        <p className="celebration-subtitle">LE GIA LINH - MY BEAUTIFUL LOVE</p>
+        <p className="celebration-date">8th October 2003</p>
       </div>
       <div className="celebration-content">
         <p className="celebration-message">
@@ -15,16 +16,12 @@ function CelebrationMessage() {
           Every moment with you feels like a precious memory worth treasuring forever.
         </p>
         <p className="celebration-wish">
-          May your day be filled with endless joy, laughter, and love. You are my sunshine, my everything.
-          Here's to more adventures, more laughter, and a lifetime of happiness together.
+          May your day be filled with endless joy, laughter, and love. You deserve all the happiness in the world.<br />
+          Love you so much!
         </p>
-        <p className="celebration-date">8th October 2025</p>
       </div>
       <div className="countdown-timer-wrapper">
         <CountdownTimer />
-      </div>
-      <div className="celebration-footer">
-        <p className="footer-note">Forever yours, with all my love ❤️</p>
       </div>
     </div>
   );
