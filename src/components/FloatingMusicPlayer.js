@@ -1,44 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './FloatingMusicPlayer.css';
 
-function FloatingMusicPlayer() {
+const FloatingMusicPlayer = () => {
+  const audioFiles = [
+    `${process.env.PUBLIC_URL}/assets/audio/romantic-background.mp3`,
+    `${process.env.PUBLIC_URL}/assets/audio/romantic-background-2.mp3`,
+    `${process.env.PUBLIC_URL}/assets/audio/romantic-background-3.mp3`,
+  ];
+
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = React.useRef(null);
+  const audioRef = useRef(new Audio(audioFiles[currentTrackIndex]));
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = 1.0; // Ensure volume is set to maximum
-      audioRef.current.muted = false; // Ensure audio is not muted
-    }
-  }, []);
-
-  const togglePlay = () => {
     const audio = audioRef.current;
-    if (!audio) return;
+    audio.src = audioFiles[currentTrackIndex];
+    if (isPlaying) {
+      audio.play();
+    }
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [currentTrackIndex, isPlaying]);
 
+  const togglePlayPause = () => {
+    const audio = audioRef.current;
     if (isPlaying) {
       audio.pause();
-      setIsPlaying(false);
     } else {
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch((error) => {
-        console.error('Error playing audio:', error);
-      });
+      audio.play();
     }
+    setIsPlaying(!isPlaying);
+  };
+
+  const playNext = () => {
+    setCurrentTrackIndex((prevIndex) => (prevIndex + 1) % audioFiles.length);
+  };
+
+  const playPrevious = () => {
+    setCurrentTrackIndex((prevIndex) =>
+      prevIndex === 0 ? audioFiles.length - 1 : prevIndex - 1
+    );
   };
 
   return (
     <div className="floating-music-player">
-      <audio ref={audioRef} loop>
-        <source src="/assets/audio/romantic-background.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-      <button onClick={togglePlay} className="play-button">
-        {isPlaying ? 'Pause' : 'Play'}
-      </button>
+      <div className="track-info">
+        <span>Playing: Track {currentTrackIndex + 1}</span>
+      </div>
+      <div className="controls">
+        <button onClick={playPrevious}>⏮️</button>
+        <button onClick={togglePlayPause}>{isPlaying ? '⏸️' : '▶️'}</button>
+        <button onClick={playNext}>⏭️</button>
+      </div>
     </div>
   );
-}
+};
 
 export default FloatingMusicPlayer;

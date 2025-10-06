@@ -7,7 +7,7 @@ import LoveNotes from './components/LoveNotes';
 import FloatingMedia from './components/FloatingMedia';
 import CountdownTimer from './components/features/CountdownTimer';
 import CelebrationMessage from './components/CelebrationMessage';
-import FloatingActionButton from './components/FloatingActionButton';
+import FloatingMusicPlayer from './components/FloatingMusicPlayer';
 
 function App() {
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
@@ -17,7 +17,7 @@ function App() {
   const [password, setPassword] = useState('');
   const [isAudioEnabled, setIsAudioEnabled] = useState(false);
 
-  const isDevelopment = true;
+  const isDevelopment = false;
 
   const audioRef = useRef(new Audio(process.env.PUBLIC_URL + '/assets/audio/romantic-background.mp3'));
 
@@ -63,41 +63,43 @@ function App() {
 
   return (
     <div className="App">
-      {!showContent && (
-        <>
-          <CountdownTimer onCountdownEnd={handleCountdownEnd} />
-          {isDevelopment && (
-            <div style={{ marginTop: '20px' }}>
-              <input
-                type="password"
-                placeholder="Bypass for dev only =))"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button onClick={handlePasswordSubmit}>Submit</button>
-            </div>
-          )}
-        </>
-      )}
-      {showConfetti && (
-        <div style={{ transition: 'opacity 1s', opacity: fadeOut ? 0 : 1 }}>
-          <Confetti width={windowSize.width} height={windowSize.height} />
-        </div>
-      )}
-      {showContent && (
-        <>
-          <Navbar />
-          <main>
-            <CelebrationMessage />
-            <FloatingMedia />
-            <section id="loveNotes">
-              <LoveNotes />
-            </section>
-          </main>
-          <Footer />
-        </>
-      )}
-      <FloatingActionButton />
+      <div style={{ paddingBottom: '60px' }}> {/* Reserve space for the fixed footer */}
+        {!showContent && (
+          <>
+            <CountdownTimer onCountdownEnd={handleCountdownEnd} />
+            {isDevelopment && (
+              <div style={{ marginTop: '20px' }}>
+                <input
+                  type="password"
+                  placeholder="Bypass for dev only =))"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button onClick={handlePasswordSubmit}>Submit</button>
+              </div>
+            )}
+          </>
+        )}
+        {showConfetti && (
+          <div style={{ transition: 'opacity 1s', opacity: fadeOut ? 0 : 1 }}>
+            <Confetti width={windowSize.width} height={windowSize.height} />
+          </div>
+        )}
+        {showContent && (
+          <>
+            <Navbar />
+            <main>
+              <CelebrationMessage />
+              <FloatingMedia />
+              <section id="loveNotes">
+                <LoveNotes />
+              </section>
+            </main>
+            <Footer />
+          </>
+        )}
+      </div>
+      <FloatingMusicPlayer />
     </div>
   );
 }
