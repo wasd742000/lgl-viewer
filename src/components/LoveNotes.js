@@ -10,6 +10,14 @@ function LoveNotes() {
     'You are my everything.',
   ]);
 
+  const images = [
+    { src: `${process.env.PUBLIC_URL}/assets/images/15.png`, alt: 'Hidden note 1' },
+    { src: `${process.env.PUBLIC_URL}/assets/images/16.png`, alt: 'Hidden note 2' },
+    { src: `${process.env.PUBLIC_URL}/assets/images/17.png`, alt: 'Hidden note 3' },
+    { src: `${process.env.PUBLIC_URL}/assets/images/18.png`, alt: 'Hidden note 4' },
+    { src: `${process.env.PUBLIC_URL}/assets/images/19.png`, alt: 'Hidden note 5' },
+  ];
+
   return (
     <div className="love-notes-container">
       <h2>Notes for you</h2>
@@ -19,7 +27,7 @@ function LoveNotes() {
             <div className="hidden-love-note">
               <div className="hidden-love-note-inner">
                 <div className="hidden-love-note-front">
-                  <p>Check it out</p>
+                  <img src={images[index].src} alt={images[index].alt} />
                 </div>
                 <div className="hidden-love-note-back">
                   <p>{note}</p>
