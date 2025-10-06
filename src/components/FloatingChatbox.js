@@ -19,11 +19,12 @@ const FloatingChatbox = () => {
     if (!userInput.trim()) return;
 
     const userMessage = { sender: 'user', text: userInput };
-    setMessages((prev) => [...prev, userMessage]);
+    const updatedMessages = [...messages, userMessage]; // Include the current user input in the context
+    setMessages(updatedMessages);
     setUserInput('');
 
     try {
-      const recentMessages = messages.slice(-5).map((msg) => ({
+      const recentMessages = updatedMessages.slice(-5).map((msg) => ({
         role: msg.sender === 'user' ? 'user' : 'assistant',
         content: msg.text,
       }));
@@ -57,8 +58,9 @@ Thông tin về Ben:
 
 Quy tắc chính:
 - Trả lời pha trò, dễ thương
-- Gợi nhẹ kiểu đáng yêu như: Sắp có bất ngờ dễ thương lắmm óaaa nhaa`,
-        context: recentMessages,
+- Gợi nhẹ kiểu đáng yêu như: Sắp có bất ngờ dễ thương lắmm óaaa nhaa.
+
+Hãy trả lời với câu chat dưới đây nha Chip Nhu: \n` + recentMessages.map(msg => `\n${msg.role}: ${msg.content}`).join(''),
         config: {
           thinkingConfig: {
             thinkingBudget: 0, // Disables thinking

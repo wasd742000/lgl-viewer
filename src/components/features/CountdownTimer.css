@@ -7,7 +7,7 @@
   justify-content: center;
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   border-radius: 10px;
-  padding: 20px;
+  padding: 40px; /* Increased padding for a larger box */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: #333;
   font-family: 'Arial', sans-serif;
@@ -34,9 +34,10 @@
 .timer-display span {
   background: #fff;
   color: #333;
-  padding: 5px 10px;
+  padding: 10px 20px; /* Increased padding for larger time blocks */
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem; /* Increased font size for better visibility */
 }
 
 /* Heartbeat animation */
