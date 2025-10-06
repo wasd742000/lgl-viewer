@@ -161,3 +161,25 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 153, 0, 0.8);
   }
 }
+
+/* Typing animation for messages */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Blinking cursor effect */
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Apply typing animation to specific elements */
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid;
+  animation: typing 4s steps(30, end), blink 0.5s step-end infinite; /* Smooth typing animation */
+  animation-fill-mode: forwards; /* Ensure the final state is preserved */
+  width: 0; /* Start hidden */
+}

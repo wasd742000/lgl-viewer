@@ -13,6 +13,8 @@ const LazyLoadedVideo = React.lazy(() => import('./components/LazyLoadedVideo'))
 
 function App() {
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [showConfetti, setShowConfetti] = useState(true);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,9 +25,22 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFadeOut(true);
+      setTimeout(() => setShowConfetti(false), 1000); // Allow 1s for fade-out effect
+    }, 10000); // 10 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="App">
-      <Confetti width={windowSize.width} height={windowSize.height} />
+      {showConfetti && (
+        <div style={{ transition: 'opacity 1s', opacity: fadeOut ? 0 : 1 }}>
+          <Confetti width={windowSize.width} height={windowSize.height} />
+        </div>
+      )}
       <Navbar />
       <main>
         <CelebrationMessage />

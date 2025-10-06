@@ -8,7 +8,7 @@ function CelebrationMessage() {
       <div className="celebration-header">
         <h1 className="celebration-title">HAPPY BIRTHDAY</h1>
         <p className="celebration-subtitle">LE GIA LINH - MY BEAUTIFUL LOVE</p>
-        <p className="celebration-date">8th October 2003</p>
+        <p className="celebration-date"><span className="typing-animation">8th October 2003</span></p>
       </div>
       <div className="celebration-content">
         <p className="celebration-message">
