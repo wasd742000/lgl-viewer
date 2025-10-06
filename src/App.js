@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect, useCallback } from 'react';
 import Confetti from 'react-confetti';
 import './App.css';
 import Navbar from './components/UI/Navbar';
@@ -7,57 +7,55 @@ import LoveNotes from './components/LoveNotes';
 import FloatingMedia from './components/FloatingMedia';
 import CountdownTimer from './components/features/CountdownTimer';
 import CelebrationMessage from './components/CelebrationMessage';
-
-// const LazyLoadedImage = React.lazy(() => import('./components/LazyLoadedImage'));
-// const LazyLoadedVideo = React.lazy(() => import('./components/LazyLoadedVideo'));
+import FloatingActionButton from './components/FloatingActionButton';
 
 function App() {
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
-  const [showConfetti, setShowConfetti] = useState(false); // Confetti starts hidden
+  const [showConfetti, setShowConfetti] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
-  const [showContent, setShowContent] = useState(false); // New state to control content visibility
-  const [password, setPassword] = useState(''); // State for the password input
+  const [showContent, setShowContent] = useState(false);
+  const [password, setPassword] = useState('');
 
-  const isDevelopment = false; // Check if in development mode
+  const isDevelopment = false;
+
+  const handleResize = useCallback(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [handleResize]);
 
   useEffect(() => {
     if (showContent) {
       const timer = setTimeout(() => {
         setFadeOut(true);
-        setTimeout(() => setShowConfetti(false), 1000); // Allow 1s for fade-out effect
-      }, 10000); // 10 seconds
+        setTimeout(() => setShowConfetti(false), 1000);
+      }, 10000);
 
       return () => clearTimeout(timer);
     }
-  }, [showContent]); // Trigger confetti logic only when content is shown
+  }, [showContent]);
 
-  const handleCountdownEnd = () => {
-    setShowContent(true); // Show content when countdown ends
-    setShowConfetti(true); // Trigger confetti when countdown ends
-  };
+  const handleCountdownEnd = useCallback(() => {
+    setShowContent(true);
+    setShowConfetti(true);
+  }, []);
 
-  const handlePasswordSubmit = () => {
-    if (password === 'devpass') { // Replace 'devpass' with your desired secret password
+  const handlePasswordSubmit = useCallback(() => {
+    if (password === 'devpass') {
       setShowContent(true);
       setShowConfetti(true);
     }
-  };
+  }, [password]);
 
   return (
     <div className="App">
       {!showContent && (
         <>
           <CountdownTimer onCountdownEnd={handleCountdownEnd} />
-          {isDevelopment && ( // Only show the password box in development mode
+          {isDevelopment && (
             <div style={{ marginTop: '20px' }}>
               <input
                 type="password"
@@ -88,6 +86,7 @@ function App() {
           <Footer />
         </>
       )}
+      <FloatingActionButton />
     </div>
   );
 }
