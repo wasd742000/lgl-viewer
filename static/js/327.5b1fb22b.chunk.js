@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkdigital_birthday_card_react=self.webpackChunkdigital_birthday_card_react||[]).push([[327],{327:(e,s,r)=>{r.r(s),r.d(s,{default:()=>a});r(43);var t=r(579);const a=()=>(0,t.jsxs)("video",{controls:!0,children:[(0,t.jsx)("source",{src:"/assets/videos/1.mp4",type:"video/mp4"}),"Your browser does not support the video tag."]})}}]);
-//# sourceMappingURL=327.5b1fb22b.chunk.js.map

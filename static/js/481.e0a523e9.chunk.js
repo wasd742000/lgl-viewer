@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkdigital_birthday_card_react=self.webpackChunkdigital_birthday_card_react||[]).push([[481],{481:(a,e,t)=>{t.r(e),t.d(e,{default:()=>c});t(43);var s=t(579);const c=()=>(0,s.jsx)("img",{src:"".concat("/lgl-viewer","/assets/images/1.png"),alt:"Lazy Loaded Example"})}}]);
-//# sourceMappingURL=481.e0a523e9.chunk.js.map
