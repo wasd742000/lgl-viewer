@@ -11,6 +11,10 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: #333;
   font-family: 'Arial', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .countdown-timer h2 {
@@ -32,4 +36,46 @@
   padding: 5px 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Added responsive styles for Countdown Timer */
+
+@media (max-width: 768px) {
+  .countdown-timer {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  .countdown-timer h2 {
+    font-size: 1.2rem;
+  }
+
+  .timer-display {
+    gap: 5px;
+    font-size: 1rem;
+  }
+
+  .timer-display span {
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-timer {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .countdown-timer h2 {
+    font-size: 1rem;
+  }
+
+  .timer-display {
+    gap: 3px;
+    font-size: 0.9rem;
+  }
+
+  .timer-display span {
+    padding: 2px 6px;
+  }
 }
