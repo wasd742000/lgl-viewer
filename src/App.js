@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect, useCallback } from 'react';
+import React, { Suspense, useState, useEffect, useCallback, useRef } from 'react';
 import Confetti from 'react-confetti';
 import './App.css';
 import Navbar from './components/UI/Navbar';
@@ -15,8 +15,11 @@ function App() {
   const [fadeOut, setFadeOut] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [password, setPassword] = useState('');
+  const [isAudioEnabled, setIsAudioEnabled] = useState(false);
 
-  const isDevelopment = false;
+  const isDevelopment = true;
+
+  const audioRef = useRef(new Audio(process.env.PUBLIC_URL + '/assets/audio/romantic-background.mp3'));
 
   const handleResize = useCallback(() => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
@@ -49,6 +52,14 @@ function App() {
       setShowConfetti(true);
     }
   }, [password]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
 
   return (
     <div className="App">
