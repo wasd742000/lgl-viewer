@@ -10,13 +10,16 @@ const FloatingMusicPlayer = () => {
 
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
   const audioRef = useRef(new Audio(audioFiles[currentTrackIndex]));
 
   useEffect(() => {
     const audio = audioRef.current;
     audio.src = audioFiles[currentTrackIndex];
     if (isPlaying) {
-      audio.play();
+      audio.play().catch((error) => {
+        console.error('Audio play was interrupted:', error);
+      });
     }
     return () => {
       audio.pause();
@@ -24,12 +27,28 @@ const FloatingMusicPlayer = () => {
     };
   }, [currentTrackIndex, isPlaying]);
 
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    const updateProgress = () => {
+      setProgress((audio.currentTime / audio.duration) * 100 || 0);
+    };
+
+    audio.addEventListener('timeupdate', updateProgress);
+
+    return () => {
+      audio.removeEventListener('timeupdate', updateProgress);
+    };
+  }, [currentTrackIndex]);
+
   const togglePlayPause = () => {
     const audio = audioRef.current;
     if (isPlaying) {
       audio.pause();
     } else {
-      audio.play();
+      audio.play().catch((error) => {
+        console.error('Audio play was interrupted:', error);
+      });
     }
     setIsPlaying(!isPlaying);
   };
@@ -53,6 +72,9 @@ const FloatingMusicPlayer = () => {
         <button onClick={playPrevious}>⏮️</button>
         <button onClick={togglePlayPause}>{isPlaying ? '⏸️' : '▶️'}</button>
         <button onClick={playNext}>⏭️</button>
+      </div>
+      <div className="progress-bar-container">
+        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
       </div>
     </div>
   );
