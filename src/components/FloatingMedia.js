@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FloatingMedia.css';
 import Modal from '../layout/Modal';
 
 function FloatingMedia() {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [startX, setStartX] = useState(0);
 
   const handleImageClick = (index) => {
     setSelectedImageIndex(index);
@@ -11,6 +12,27 @@ function FloatingMedia() {
 
   const closeModal = () => {
     setSelectedImageIndex(null);
+  };
+
+  const nextImage = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex + 1) % mediaItems.length);
+  };
+
+  const prevImage = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex - 1 + mediaItems.length) % mediaItems.length);
+  };
+
+  const handleTouchStart = (e) => {
+    setStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      nextImage();
+    } else if (endX - startX > 50) {
+      prevImage();
+    }
   };
 
   const mediaItems = [
@@ -46,7 +68,12 @@ function FloatingMedia() {
         </div>
       ))}
       {selectedImageIndex !== null && (
-        <div className="modal-overlay" onClick={closeModal}>
+        <div
+          className="modal-overlay"
+          onClick={closeModal}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <img
               src={mediaItems[selectedImageIndex].src}
@@ -54,6 +81,16 @@ function FloatingMedia() {
               className="modal-image"
             />
             <button className="modal-close" onClick={closeModal}>&times;</button>
+            <button className="modal-prev" onClick={prevImage}>&lt;</button>
+            <button className="modal-next" onClick={nextImage}>&gt;</button>
+            <div className="modal-indicators">
+              {mediaItems.map((_, index) => (
+                <div
+                  key={index}
+                  className={`modal-indicator ${index === selectedImageIndex ? 'active' : ''}`}
+                ></div>
+              ))}
+            </div>
           </div>
         </div>
       )}
