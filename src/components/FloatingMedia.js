@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './FloatingMedia.css'; // Import the CSS file for FloatingMedia
+import './FloatingMedia.css';
 import Modal from '../layout/Modal';
 
 function FloatingMedia() {
@@ -11,14 +11,6 @@ function FloatingMedia() {
 
   const closeModal = () => {
     setSelectedImageIndex(null);
-  };
-
-  const nextImage = () => {
-    setSelectedImageIndex((prevIndex) => (prevIndex + 1) % mediaItems.length);
-  };
-
-  const prevImage = () => {
-    setSelectedImageIndex((prevIndex) => (prevIndex - 1 + mediaItems.length) % mediaItems.length);
   };
 
   const mediaItems = [
@@ -39,35 +31,31 @@ function FloatingMedia() {
   ];
 
   return (
-    <div className="floating-media-container vintage-paper-effect">
+    <div className="floating-media-container">
       {mediaItems.map((item, index) => (
         <div
-          className="floating-item polaroid-effect"
+          className="floating-item"
           key={index}
-          data-caption={item.alt}
           onClick={() => handleImageClick(index)}
         >
-          <div className="vintage-frame vintage-border-ornate">
-            <img
-              src={item.src}
-              alt={item.alt}
-              className="floating-photo sepia-filter"
-              loading="lazy"
-              aria-label={`Floating media item ${index + 1}`}
-            />
-          </div>
+          <img
+            src={item.src}
+            alt={item.alt}
+            className="floating-photo"
+          />
         </div>
       ))}
       {selectedImageIndex !== null && (
-        <Modal
-          imageSrc={mediaItems[selectedImageIndex].src}
-          imageAlt={mediaItems[selectedImageIndex].alt}
-          onClose={closeModal}
-          onNext={nextImage}
-          onPrev={prevImage}
-          currentIndex={selectedImageIndex}
-          totalImages={mediaItems.length}
-        />
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={mediaItems[selectedImageIndex].src}
+              alt={mediaItems[selectedImageIndex].alt}
+              className="modal-image"
+            />
+            <button className="modal-close" onClick={closeModal}>&times;</button>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -1,10 +1,11 @@
+/* Full-screen modal overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9); /* Dark background */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,30 +20,24 @@
   animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Centered modal content */
 .modal-content {
   position: relative;
-  width: 100%;
-  height: 100%;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  overflow: hidden;
 }
 
-/* Ensure modal image scales to 40% of viewport size */
+/* Modal image styling */
 .modal-image {
-  max-width: 40vw; /* 40% of the viewport width */
-  max-height: 40vh; /* 40% of the viewport height */
-  width: auto;
-  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  display: block;
   border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
   pointer-events: auto;
   -webkit-touch-callout: none;
@@ -53,36 +48,12 @@
   user-select: none;
 }
 
-/* Allow zooming on larger screens */
-@media (min-width: 768px) {
-  .modal-image {
-    max-width: 95vw;
-    max-height: 95vh;
-    cursor: zoom-in;
-  }
-  
-  .modal-image:hover {
-    transform: scale(1.02);
-  }
-}
-
-/* Mobile optimizations */
-@media (max-width: 767px) {
-  .modal-overlay {
-    padding: 10px;
-  }
-  
-  .modal-image {
-    max-width: calc(100vw - 20px);
-    max-height: calc(100vh - 80px); /* Extra space for mobile UI */
-  }
-}
-
+/* Close button styling */
 .modal-close {
-  position: fixed;
+  position: absolute;
   top: 20px;
   right: 20px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   color: #333;
   border: none;
   border-radius: 50%;
@@ -95,9 +66,8 @@
   font-size: 20px;
   font-weight: bold;
   z-index: 10000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
 }
 
 .modal-close:hover {
