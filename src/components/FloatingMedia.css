@@ -7,7 +7,7 @@
   perspective: 1000px;
   position: relative;
   width: 100%;
-  height: 750px; /* Increased by 50% */
+  height: 2000px; /* Increased height for larger vertical space */
   overflow: hidden; /* Ensure floating items stay within bounds */
   z-index: 1; /* Ensure it does not overlap higher-priority elements */
 }
@@ -241,4 +241,50 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 2; /* Ensure it stays above floating media */
+}
+
+.modal-overlay {
+  position: fixed; /* Ensure the overlay covers the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); /* Dim background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.modal-content {
+  max-width: 90vw; /* Fit within the viewport width */
+  max-height: 1000vh; /* Fit within the viewport height */
+  overflow: hidden; /* Prevent content overflow */
+  background: #fff; /* White background for the modal */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modal-image {
+  /* Scale the image so its height is less than the modal's vertical size */
+  width: auto;
+  height: auto;
+  max-width: 10%;
+  max-height: 10%; /* Scale down to ensure height is less than modal view */
+  object-fit: contain; /* Maintain aspect ratio and ensure full image is visible */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 95vw; /* Slightly larger for smaller screens */
+    max-height: 95vh;
+  }
+
+  .modal-image {
+    border-radius: 5px; /* Reduce border radius for smaller screens */
+  }
 }

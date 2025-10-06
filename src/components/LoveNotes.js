@@ -8,7 +8,7 @@ function LoveNotes() {
     'You make my heart skip a beat.',
     'Forever grateful for your love.',
     'You are my everything.',
-    '1st gift: the drawer below the Wifi router - take driver seat if you want',
+    'Take a look at the drawer below the Wifi router',
   ]);
 
   const images = [
