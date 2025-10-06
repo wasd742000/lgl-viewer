@@ -8,6 +8,7 @@ import FloatingMedia from './components/FloatingMedia';
 import CountdownTimer from './components/features/CountdownTimer';
 import CelebrationMessage from './components/CelebrationMessage';
 import FloatingMusicPlayer from './components/FloatingMusicPlayer';
+import FloatingChatbox from './components/FloatingChatbox';
 
 function App() {
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
@@ -106,6 +107,7 @@ function App() {
         {showContent && renderMainContent()}
       </div>
       <FloatingMusicPlayer />
+      <FloatingChatbox />
     </div>
   );
 }

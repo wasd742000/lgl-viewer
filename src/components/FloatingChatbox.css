@@ -1,0 +1,99 @@
+.floating-chatbox-container {
+  position: fixed;
+  bottom: 100px; /* Adjusted to avoid overlap with audio player */
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chatbox-toggle-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 70px; /* Increased size */
+  height: 70px; /* Increased size */
+  font-size: 20px; /* Increased font size */
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: floatVertical 2s infinite ease-in-out;
+}
+
+@keyframes floatVertical {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.chatbox {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  max-height: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbox-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbox-input-container {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chatbox-input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.chatbox-input:focus {
+  outline: none;
+}
+
+.chatbox-input-container button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px 0;
+  max-width: 70%;
+  word-wrap: break-word;
+  text-align: right; /* Ensure text is right-aligned */
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px 0;
+  max-width: 70%;
+  word-wrap: break-word;
+  text-align: left; /* Ensure text is left-aligned */
+}
