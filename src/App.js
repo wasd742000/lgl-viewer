@@ -18,7 +18,7 @@ function App() {
   const [showContent, setShowContent] = useState(false); // New state to control content visibility
   const [password, setPassword] = useState(''); // State for the password input
 
-  const isDevelopment = true; // Check if in development mode
+  const isDevelopment = false; // Check if in development mode
 
   useEffect(() => {
     const handleResize = () => {
