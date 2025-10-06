@@ -142,8 +142,9 @@
   background: rgba(255, 255, 255, 1);
 }
 
+/* Text-based image position indicator */
 .modal-counter {
-  position: fixed;
+  position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);

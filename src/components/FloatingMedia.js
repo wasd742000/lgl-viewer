@@ -83,13 +83,8 @@ function FloatingMedia() {
             <button className="modal-close" onClick={closeModal}>&times;</button>
             <button className="modal-prev" onClick={prevImage}>&lt;</button>
             <button className="modal-next" onClick={nextImage}>&gt;</button>
-            <div className="modal-indicators">
-              {mediaItems.map((_, index) => (
-                <div
-                  key={index}
-                  className={`modal-indicator ${index === selectedImageIndex ? 'active' : ''}`}
-                ></div>
-              ))}
+            <div className="modal-counter">
+              Gia Linh's memory {selectedImageIndex + 1} of {mediaItems.length}
             </div>
           </div>
         </div>
