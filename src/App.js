@@ -61,43 +61,49 @@ function App() {
     };
   }, []);
 
+  const renderDevelopmentBypass = () => (
+    <div style={{ marginTop: '20px' }}>
+      <input
+        type="password"
+        placeholder="Bypass for dev only =))"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handlePasswordSubmit}>Submit</button>
+    </div>
+  );
+
+  const renderConfetti = () => (
+    <div style={{ transition: 'opacity 1s', opacity: fadeOut ? 0 : 1 }}>
+      <Confetti width={windowSize.width} height={windowSize.height} />
+    </div>
+  );
+
+  const renderMainContent = () => (
+    <>
+      <Navbar />
+      <main>
+        <CelebrationMessage />
+        <FloatingMedia />
+        <section id="loveNotes">
+          <LoveNotes />
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+
   return (
     <div className="App">
       <div style={{ paddingBottom: '60px' }}> {/* Reserve space for the fixed footer */}
         {!showContent && (
           <>
             <CountdownTimer onCountdownEnd={handleCountdownEnd} />
-            {isDevelopment && (
-              <div style={{ marginTop: '20px' }}>
-                <input
-                  type="password"
-                  placeholder="Bypass for dev only =))"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <button onClick={handlePasswordSubmit}>Submit</button>
-              </div>
-            )}
+            {isDevelopment && renderDevelopmentBypass()}
           </>
         )}
-        {showConfetti && (
-          <div style={{ transition: 'opacity 1s', opacity: fadeOut ? 0 : 1 }}>
-            <Confetti width={windowSize.width} height={windowSize.height} />
-          </div>
-        )}
-        {showContent && (
-          <>
-            <Navbar />
-            <main>
-              <CelebrationMessage />
-              <FloatingMedia />
-              <section id="loveNotes">
-                <LoveNotes />
-              </section>
-            </main>
-            <Footer />
-          </>
-        )}
+        {showConfetti && renderConfetti()}
+        {showContent && renderMainContent()}
       </div>
       <FloatingMusicPlayer />
     </div>

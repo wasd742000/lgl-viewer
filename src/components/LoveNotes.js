@@ -8,6 +8,7 @@ function LoveNotes() {
     'You make my heart skip a beat.',
     'Forever grateful for your love.',
     'You are my everything.',
+    '1st gift: the drawer below the Wifi router - take driver seat if you want',
   ]);
 
   const images = [
@@ -16,6 +17,7 @@ function LoveNotes() {
     { src: `${process.env.PUBLIC_URL}/assets/images/17.png`, alt: 'Hidden note 3' },
     { src: `${process.env.PUBLIC_URL}/assets/images/18.png`, alt: 'Hidden note 4' },
     { src: `${process.env.PUBLIC_URL}/assets/images/19.png`, alt: 'Hidden note 5' },
+    { src: `${process.env.PUBLIC_URL}/assets/images/20.png`, alt: 'Hidden note 6' },
   ];
 
   return (
