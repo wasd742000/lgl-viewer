@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './CountdownTimer.css';
 
 function CountdownTimer() {
   const calculateTimeLeft = () => {

@@ -12,16 +12,12 @@ function CelebrationMessage() {
       </div>
       <div className="celebration-content">
         <p className="celebration-message">
-          Another year of your amazing life, another year of our beautiful journey together.<br />
-          Every moment with you feels like a precious memory worth treasuring forever.
+          Happy Birthday to the person who makes my world brighter and my heart fuller. I hope your day is as wonderful as you are.
         </p>
         <p className="celebration-wish">
-          May your day be filled with endless joy, laughter, and love. You deserve all the happiness in the world.<br />
+          You deserve all the happiness in the world.<br />
           Love you so much!
         </p>
-      </div>
-      <div className="countdown-timer-wrapper">
-        <CountdownTimer />
       </div>
     </div>
   );
