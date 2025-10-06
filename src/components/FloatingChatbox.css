@@ -15,7 +15,8 @@
   border-radius: 50%;
   width: 70px; /* Increased size */
   height: 70px; /* Increased size */
-  font-size: 20px; /* Increased font size */
+  font-size: 16px; /* Reduced font size to fit the button */
+  padding: 5px; /* Added padding for better alignment */
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   animation: floatVertical 2s infinite ease-in-out;
