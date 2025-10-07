@@ -3,7 +3,7 @@ import { GoogleGenAI } from '@google/genai';
 import './FloatingChatbox.css';
 
 const ai = new GoogleGenAI({
-  apiKey: 'AIzaSyBGd7SfwTYRxhPRrJWPMu9iAplGeCYuR-M',
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
 });
 
 const FloatingChatbox = () => {
