@@ -18,7 +18,7 @@ function App() {
   const [password, setPassword] = useState('');
   const [isAudioEnabled, setIsAudioEnabled] = useState(false);
 
-  const isDevelopment = true;
+  const isDevelopment = false;
 
   const audioRef = useRef(new Audio(process.env.PUBLIC_URL + '/assets/audio/romantic-background.mp3'));
 

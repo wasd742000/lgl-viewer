@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CountdownTimer.css';
 
-function CountdownTimer() {
+function CountdownTimer({ onCountdownEnd }) {
   const calculateTimeLeft = () => {
     const targetDate = new Date('2025-10-08T00:00:00');
     const now = new Date();
@@ -25,11 +25,19 @@ function CountdownTimer() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      const newTimeLeft = calculateTimeLeft();
+      setTimeLeft(newTimeLeft);
+      
+      // Check if countdown has ended (all values are 0 or undefined)
+      if (!newTimeLeft.days && !newTimeLeft.hours && !newTimeLeft.minutes && !newTimeLeft.seconds) {
+        if (onCountdownEnd) {
+          onCountdownEnd();
+        }
+      }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [onCountdownEnd]);
 
   return (
     <div className="countdown-timer visually-appealing" id="countdownTimer">
